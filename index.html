@@ -5,9 +5,9 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Flutter Developer</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Portfolio</title>
+    <meta name="description" content="Modern portfolio for Jayanta Paul, a Web Designer and Developer based in Kolkata.">
+    <meta name="author" content="Jayanta Paul">
 
     <!-- mobile specific metas
     ================================================== -->
@@ -15,655 +15,423 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/vendor.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
-    <style>
-        * {
-            user-select: none;
-        }
-    </style>
 
-    <!-- favicons
+    <!-- custom styles for plugins and base layout
     ================================================== -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"> -->
-    <link rel="manifest" href="site.webmanifest">
+    <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #030712; /* gray-950 */
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #3b82f6; /* blue-500 */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712; /* gray-950 */
+            color: #D1D5DB; /* gray-300 */
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section Padding */
+        .section {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        /* Header Styling on Scroll */
+        .s-header {
+             background-color: transparent;
+        }
+        .s-header.scrolled {
+            background-color: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Owl Carousel Custom Styles */
+        .owl-dots {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .owl-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4B5563; /* gray-600 */
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        .owl-dot.active {
+            background-color: #3B82F6; /* blue-500 */
+        }
+
+        /* PhotoSwipe CSS - Required for the gallery plugin */
+        .pswp{display:none;position:absolute;width:100%;height:100%;left:0;top:0;overflow:hidden;-ms-touch-action:none;touch-action:none;z-index:1500;-webkit-text-size-adjust:100%;-webkit-backface-visibility:hidden;outline:none}.pswp--open{display:block}.pswp--animate_opacity{opacity:.001;-webkit-transition:opacity 333ms cubic-bezier(.4,0,.22,1);transition:opacity 333ms cubic-bezier(.4,0,.22,1)}.pswp--notouch .pswp__container,.pswp--notouch .pswp__ui{-webkit-backface-visibility:hidden}.pswp__bg{position:absolute;left:0;top:0;width:100%;height:100%;background:#000;opacity:0;-webkit-backface-visibility:hidden;-webkit-transition:opacity 333ms cubic-bezier(.4,0,.22,1);transition:opacity 333ms cubic-bezier(.4,0,.22,1)}.pswp__scroll-wrap{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden}.pswp__container,.pswp__zoom-wrap{-ms-touch-action:none;touch-action:none;position:absolute;left:0;right:0;top:0;bottom:0}.pswp__container,.pswp__item{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.pswp__zoom-wrap{position:absolute;width:100%;-webkit-transform-origin:left top;-ms-transform-origin:left top;transform-origin:left top;-webkit-transition:-webkit-transform 333ms cubic-bezier(.4,0,.22,1);transition:transform 333ms cubic-bezier(.4,0,.22,1)}.pswp__item{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden}.pswp__img{position:absolute;width:auto;height:auto;top:50%;left:50%}.pswp__img--placeholder{-webkit-backface-visibility:hidden}.pswp__img--placeholder--blank{background:#222}.pswp__error-msg{position:absolute;left:0;top:50%;width:100%;text-align:center;font-size:14px;line-height:16px;margin-top:-8px;color:#ccc}.pswp__error-msg a{color:#ccc;text-decoration:underline}.pswp__ui{-webkit-font-smoothing:auto;visibility:visible;opacity:1;z-index:1550;-webkit-transition:opacity 333ms cubic-bezier(.4,0,.22,1);transition:opacity 333ms cubic-bezier(.4,0,.22,1)}.pswp__top-bar{position:absolute;left:0;top:0;height:44px;width:100%}.pswp__caption,.pswp__top-bar{background-color:rgba(0,0,0,.5);-webkit-backface-visibility:hidden}.pswp__caption{position:absolute;left:0;bottom:0;width:100%;min-height:44px}.pswp__caption__center{padding:10px;max-width:800px;margin:0 auto;font-size:13px;line-height:20px;color:#ccc;text-align:left}.pswp__caption--empty{display:none}.pswp__button{width:44px;height:44px;position:relative;background:none;cursor:pointer;overflow:visible;-webkit-appearance:none;display:block;border:0;padding:0;margin:0;float:right;opacity:.75;-webkit-transition:opacity .2s;transition:opacity .2s;-webkit-box-shadow:none;box-shadow:none}.pswp__button:focus,.pswp__button:hover{opacity:1}.pswp__button--close{background-position:0 -44px}.pswp__button--share{background-position:-44px -44px}.pswp__button--fs{display:none!important}.pswp--supports-fs .pswp__button--fs{display:block}.pswp--fs .pswp__button--fs{background-position:-44px 0}.pswp__button--zoom{display:none;background-position:-88px 0}.pswp--zoom-allowed .pswp__button--zoom{display:block}.pswp--zoomed-in .pswp__button--zoom{background-position:-132px 0}.pswp__button--arrow--left,.pswp__button--arrow--right{background:none;top:50%;margin-top:-50px;width:60px;height:100px;position:absolute}.pswp__button--arrow--left{left:0}.pswp__button--arrow--right{right:0}.pswp__button--arrow--left:before,.pswp__button--arrow--right:before{content:'';top:35px;background-color:rgba(255,255,255,.8);height:30px;width:2px;position:absolute}.pswp__button--arrow--left:before{left:25px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.pswp__button--arrow--right:before{right:25px;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.pswp__button--arrow--left:after,.pswp__button--arrow--right:after{content:'';top:53px;background-color:rgba(255,255,255,.8);height:2px;width:30px;position:absolute}.pswp__button--arrow--left:after{left:17px}.pswp__button--arrow--right:after{right:17px}.pswp__counter{position:absolute;left:0;top:0;height:44px;font-size:13px;line-height:44px;color:#fff;opacity:.75;padding:0 10px}.pswp__preloader{width:44px;height:44px;position:absolute;top:0;left:50%;margin-left:-22px;opacity:0;-webkit-transition:opacity .25s ease-out;transition:opacity .25s ease-out;will-change:opacity}.pswp__preloader__icn{width:20px;height:20px;margin:12px}.pswp__preloader--active{opacity:1}
+    </style>
 
 </head>
 
-<body id="top">
-
+<body id="top" class="text-gray-300 bg-gray-950">
 
     <!-- preloader
     ================================================== -->
     <div id="preloader">
-        <div id="loader" class="dots-fade">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <div id="loader"></div>
     </div>
 
 
     <!-- header
     ================================================== -->
-    <header class="s-header">
-<!-- 
+    <header class="s-header fixed w-full z-50 transition-all duration-300 flex items-center p-6">
         <div class="header-logo">
-            <a href="index.html">
-                <img src="images/logo.svg" alt="Homepage">
+            <a class="site-logo" href="index.html">
+                <span class="text-white font-bold text-2xl tracking-wide"></span>
             </a>
-        </div> -->
+        </div>
 
-        <div class="header-content">
-    
-            <nav class="row header-nav-wrap">
-                <ul class="header-nav">
-                    <li><a class="smoothscroll" href="#hero" title="Intro">Home</a></li>
-                    <li><a class="smoothscroll" href="#about" title="About">About</a></li>
-                    <li><a class="smoothscroll" href="#services" title="Services">Services</a></li>
-                    <li><a class="smoothscroll" href="#portfolio" title="Works">Works</a></li>
-                    <!-- <li><a href="mailto:#0" title="Contact us">Say Hello</a></li> -->
-                </ul>
-            </nav> <!-- end header-nav-wrap -->
+        <nav class="s-header__nav hidden lg:flex ml-auto items-center space-x-8">
+            <ul class="flex space-x-8">
+                <li class="current"><a href="#home" class="smoothscroll text-gray-300 hover:text-blue-400 transition-colors uppercase text-sm font-medium tracking-wider">Home</a></li>
+                <li><a href="#about" class="smoothscroll text-gray-300 hover:text-blue-400 transition-colors uppercase text-sm font-medium tracking-wider">About</a></li>
+                <li><a href="#services" class="smoothscroll text-gray-300 hover:text-blue-400 transition-colors uppercase text-sm font-medium tracking-wider">Services</a></li>
+                <li><a href="#works" class="smoothscroll text-gray-300 hover:text-blue-400 transition-colors uppercase text-sm font-medium tracking-wider">Works</a></li>
+            </ul>
+            <a href="#contact" class="smoothscroll btn bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold uppercase tracking-wider text-xs">
+                Contact Me
+            </a>
+        </nav>
 
-            <a href="https://drive.google.com/file/d/1ZxkMcULmyNFj9v9CHeBVgM1s-1y1MXp9/view?usp=sharing" class="btn btn--stroke btn--small" target="_blank" >Download CV</a>
-
-        </div> <!-- end header-content -->
-
-        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
-
-    </header> 
+        <a class="s-header__menu-toggle lg:hidden ml-auto" href="#0" title="Menu">
+            <span class="s-header__menu-icon"></span>
+        </a>
+    </header> <!-- end s-header -->
 
 
-    <!-- hero
+    <!-- home
     ================================================== -->
-    <section id="hero" class="s-hero target-section" data-parallax="scroll" data-image-src="images/services-bg-3000.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+    <section id="home" class="s-home relative min-h-screen flex items-center justify-center text-center text-white" style="background-image: url('images/background.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.6);"></div>
+        
+        <div class="home-content relative z-10 p-6">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase tracking-tighter mb-4">
+                I'm Jayanta Paul.
+            </h1>
+            <h3 class="text-lg md:text-2xl font-light text-gray-200 max-w-4xl mx-auto">
+                From the initial idea to a global launch, I am a web developer, AI enthusiast, and business consultant. My passion lies in crafting innovative apps and digital solutions that create tangible success for businesses anywhere in the world.
+            </h3>
 
-        <div class="row hero-content">
+            <div class="home-content__buttons mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#works" class="smoothscroll btn bg-transparent border-2 border-blue-500 text-white py-3 px-8 rounded-md hover:bg-blue-500 transition-all duration-300 font-semibold uppercase tracking-wider">
+                    Latest Projects
+                </a>
+                <a href="#about" class="smoothscroll btn bg-white text-gray-900 py-3 px-8 rounded-md hover:bg-gray-200 transition-all duration-300 font-semibold uppercase tracking-wider">
+                    More About Me
+                </a>
+            </div>
 
-            <div class="column large-full">
+        </div> <!-- end home-content -->
 
-                <h1>
-                    Jayanta Paul  
-                    <br>a skilled Flutter developer
-                    specializing in Dart, GitHub, Bitbucket, API integration, <br>
-                    and creative design for iOS and Android apps.
-                </h1>
-
-                <ul class="hero-social">
-                    <li>
-                        <a href="https://x.com/dev_jayanta_dev" title="" target="_blank">Twitter</a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/jayanta.paul.121772/" title="" target="_blank">Facebook</a>
-                    </li>
-                </ul> 
-                <!-- end hero-social -->
-
-            </div> 
-
-        </div> <!-- end hero-content -->
-
-        <div class="hero-scroll">
+        <div class="home-content__scroll absolute bottom-12">
             <a href="#about" class="scroll-link smoothscroll">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 24l-8-9h6v-15h4v15h6z"/></svg>
+                <span>Scroll Down</span>
             </a>
-        </div> <!-- end hero-scroll -->
+        </div> <!-- end home-content__scroll -->
 
-    </section> <!-- end s-hero -->
+    </section> <!-- end s-home -->
 
 
     <!-- about
     ================================================== -->
-    <section id="about" class="s-about target-section">
-
-        <div class="s-about__section s-about__section--profile">
-
-            <div class="right-vert-line"></div>
-
-            <div class="row">
-                <div class="column large-6 medium-8 tab-full">
-
-                    <div class="section-intro" data-num="01" data-aos="fade-up">
-                        <h3 class="subhead">About Me</h3>
-                        <h1 class="display-1">I thrive on challenges and embrace them without hesitation.</h1>
+    <section id="about" class="s-about section bg-gray-900">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="flex flex-wrap lg:flex-nowrap items-center gap-12 lg:gap-24">
+                <div class="w-full lg:w-1/3">
+                    <img src="images/profile.jpg" class="rounded-lg shadow-2xl" alt="Paul Jayanta">
+                </div>
+                <div class="w-full lg:w-2/3">
+                    <div class="about-me__text">
+                        <h2 class="text-3xl font-bold mb-4 text-white">About Me</h2>
+                        <p class="text-lg leading-relaxed text-gray-400">
+                            I build the bridge between innovative ideas and market-ready solutions, leveraging my expertise in web, app, and AI development to help businesses thrive on a global scale.
+                        </p>
                     </div>
 
-                    <!-- <div class="profile-pic" data-aos="fade-up">
-                        <img src="images/profile_image.jpg" 
-                             srcset="images/profile_image.jpg 1x, images/profile_image.jpg 2x" alt="">
-                    </div> -->
-
-                    <h3 data-aos="fade-up">Profile</h3>
-
-                    <p data-aos="fade-up">
-                        Passionate Flutter developer skilled in creating dynamic, cross-platform mobile applications. Proficient in C, C++, Python, Git, SQL, Firebase, and JavaScript frameworks, with a strong focus on clean, maintainable code. 
-                        Adept at leveraging Flutter’s capabilities to deliver efficient, user-friendly solutions and drive innovation in mobile app development.
-                    </p>
-
+                    <div class="about-me__action mt-8">
+                        <h4 class="text-xl font-semibold mb-4 text-white">Let's Connect</h4>
+                        <ul class="about-social flex space-x-5">
+                            <li><a href="https://www.facebook.com/jayanta.paul.121772/" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/jayanta-paul-606256220/" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-linkedin-in fa-2x"></i></a></li>
+                            <li><a href="https://github.com/pauljayanta17" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-github fa-2x"></i></a></li>
+                        </ul>
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                             <a class="btn btn--primary bg-blue-600 text-white py-3 px-8 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold uppercase tracking-wider text-center" href="#contact">Hire Me</a>
+                             <a class="btn btn--stroke bg-transparent border-2 border-gray-600 text-white py-3 px-8 rounded-md hover:bg-gray-600 transition-all duration-300 font-semibold uppercase tracking-wider text-center" href="https://drive.google.com/file/d/1trkXgjNYDxymWs7RQUiQyWcnqtGrRbER/view?usp=sharing" target="_blank">Download CV</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </div> <!-- end s-about__section--profile -->
-
-        <div class="s-about__section">
-
-            <div class="row">
-                <div class="column">
-                    <h3 data-aos="fade-up">Career</h3>
-                </div>
-            </div>
-
-            <div class="row block-large-1-2 block-900-full work-positions">
-
-                <div class="column" data-aos="fade-up">
-                    <div class="position">
-                        <div class="position__header">
-                            <h6>
-                                <span class="position__co">Freelancing</span>
-                                <!-- <span class="position__pos">Product Designer</span> -->
-                            </h6>
-                            <div class="position__timeframe">
-                                June 2020 - Present
-                            </div>
-                        </div>
-
-                        <p>
-                            Engaged in freelancing projects focused on website development, mobile app creation, and Python programming, delivering tailored solutions and leveraging technical expertise to meet diverse client needs effectively.
-                        </p>
-                    </div>
-                </div> <!-- end column -->
-                <div class="column" data-aos="fade-up">
-                    <div class="position">
-                        <div class="position__header">
-                            <h6>
-                                <span class="position__co">Notebrains</span>
-                                <span class="position__pos">Sr. Project Associate</span>
-                            </h6>
-                            <div class="position__timeframe">
-                                November 2022 - Present
-                            </div>
-                        </div>
-
-                        <p>
-                            Skilled in developing various apps such as ride-sharing platforms (Uber-like), fintech solutions, e-commerce applications, and more, showcasing proficiency in building innovative, user-focused, and scalable solutions for a wide range of industries.
-                        </p>
-                    </div>
-                    <!-- end column
-                </div> 
-                
-                <div class="column" data-aos="fade-up">
-                    <div class="position">
-                        <div class="position__header">
-                            <h6>
-                                <span class="position__co">Dropbox</span>
-                                <span class="position__pos">Mobile App Designer</span>
-                            </h6>
-                            <div class="position__timeframe">
-                                April 2014 - August 2015
-                            </div>
-                        </div>
-
-                        <p>
-                        In hac habitasse platea dictumst. Donec pede justo, fringilla vel, aliquet nec, 
-                        vulputate eget, arcu. Fusce risus nisl, viverra et, tempor et, pretium in, sapien.
-                        Phasellus volutpat, metus eget.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="column" data-aos="fade-up">
-                    <div class="position">
-                        <div class="position__header">
-                            <h6>
-                                <span class="position__co">Microsoft</span>
-                                <span class="position__pos">Product Designer</span>
-                            </h6>
-                            <div class="position__timeframe">
-                                June 2012 - February 2014
-                            </div>
-                        </div>
-
-                        <p>
-                        Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-                        Curabitur blandit mollis lacus. Curabitur vestibulum aliquam leo. 
-                        Vivamus in erat ut urna cursus vestibulum.
-                        </p>
-                    </div>
-                </div>
-                 
-                -->
-            </div> <!-- work positions -->
-
-        </div> <!-- end s-about__section -->
-
+        </div>
     </section> <!-- end s-about -->
 
 
     <!-- services
     ================================================== -->
-    <section id="services" class="s-services target-section h-dark-bg">
-        
-        <div class="row s-services__content">
-
-            <div class="vert-line"></div>
-
-            <div class="column large-6 s-services__leftcol">
-                <div class="section-intro" data-num="02" data-aos="fade-up">
-                    <h3 class="subhead">Expertise</h3>
-
-                    <h1 class="display-1">
-                        Expert in scalable ride-sharing, fintech,and e-commerce app development.
-                    </h1>
-                </div>
-
-                <p class="lead" data-aos="fade-up">
-                    Specialized in creating scalable and user-centric mobile applications, including ride-sharing platforms, fintech solutions, and e-commerce apps. Proficient in delivering innovative, robust, and tailored solutions to meet diverse industry needs and client requirements effectively.
-                </p>
-            </div> <!-- end  s-services--leftcol -->
-
-            <div class="column large-6">
-                <ul class="services-list" data-aos="fade-up">
-                    <li class="services-list__item is-active">
-                        <div class="services-list__item-header">
-                            <h5>Product Design</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                                Product design focuses on creating user-centric, functional, and visually appealing products, combining aesthetics, usability, and innovation to solve problems and enhance user experience, while meeting business and technical requirements.
-                            </p>
-                        </div>
-                    </li> <!-- services-list__item -->
-                    <li class="services-list__item">
-                        <div class="services-list__item-header">
-                            <h5>Code Structuring</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                                Code structure refers to organizing code logically and efficiently, ensuring readability, maintainability, and scalability. It includes proper naming conventions, modularization, indentation, and consistent commenting to facilitate collaboration and future updates.
-                            </p>
-                        </div>
-                    </li> <!-- services-list__item -->
-                    <li class="services-list__item">
-                        <div class="services-list__item-header">
-                            <h5>App Development</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                                App development involves creating software applications for mobile or desktop platforms, focusing on functionality, user experience, and performance. It includes design, coding, testing, and deployment to meet user needs and business goals.
-                            </p>
-                        </div>
-                    </li> <!-- services-list__item -->
-                    <li class="services-list__item">
-                        <div class="services-list__item-header">
-                            <h5>Api and Firebase</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                                APIs enable communication between software systems, facilitating data exchange. Firebase is a backend-as-a-service platform providing real-time databases, authentication, and hosting, simplifying app development by offering essential tools and services.
-                            </p>
-                        </div>
-                    </li> <!-- services-list__item -->
-                    <li class="services-list__item">
-                        <div class="services-list__item-header">
-                            <h5>Team colaboration</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                                Team collaboration involves working together towards common goals, sharing knowledge, skills, and responsibilities. Effective communication, trust, and mutual support enhance productivity, creativity, and problem-solving within a team for successful outcomes.
-                            </p>
-                        </div>
-                    </li> 
-                    <!-- <li class="services-list__item">
-                        <div class="services-list__item-header">
-                            <h5>E-Commerce</h5>
-                        </div>
-                        <div class="services-list__item-body">
-                            <p>
-                            Praesent ac sem eget est egestas volutpat. Nam pretium turpis et arcu. Quisque ut nisi. 
-                            Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque 
-                            ante vel mi. Phasellus dolor. Aenean vulputate eleifend tellus. Nullam vel sem. Nam ipsum risus, 
-                            rutrum vitae, vestibulum eu, molestie vel.
-                            </p>
-                        </div>
-                    </li>  -->
-                </ul> <!-- end services-list -->
+    <section id="services" class="s-services section">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">What I Do</h2>
+                <p class="text-lg text-gray-400 mt-2 max-w-2xl mx-auto">I have everything you need to launch and grow your business.</p>
             </div>
 
-        </div> <!-- s-services__content -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-desktop fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Web Design</h3>
+                    <p class="text-gray-400">Creating modern and responsive designs that are intuitive and user-friendly.</p>
+                </div>
 
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-code fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Development</h3>
+                    <p class="text-gray-400">Building robust and scalable web applications with clean and efficient code.</p>
+                </div>
+
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-mobile-alt fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">App Development</h3>
+                    <p class="text-gray-400">Developing mobile applications for both iOS and Android platforms.</p>
+                </div>
+
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-tags fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Branding</h3>
+                    <p class="text-gray-400">Crafting unique brand identities that resonate with your target audience.</p>
+                </div>
+
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-chart-line fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Marketing</h3>
+                    <p class="text-gray-400">Implementing effective marketing strategies to help your business grow.</p>
+                </div>
+
+                <div class="service-item bg-gray-900 p-8 rounded-lg text-center shadow-lg transition-transform transform hover:-translate-y-2">
+                    <span class="text-blue-500"><i class="fas fa-robot fa-3x"></i></span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-2">AI Integration</h3>
+                    <p class="text-gray-400">Implementing AI solutions to enhance user experiences and streamline business processes.</p>
+                </div>
+
+            </div> <!-- end services-list -->
+        </div>
     </section> <!-- end s-services -->
 
 
-    <!-- portfolio
+    <!-- works
     ================================================== -->
-    <section id="portfolio" class="s-portfolio target-section" >
-       
-
-        <div class="s-portfolio__section">
-
-            <!-- <div class="row">
-                <div class="column">
-                    <h3 data-aos="fade-up"></h3>
-                    <br>
-                    <br>
-                    <h3 data-aos="fade-up"></h3>
-                </div>
-            </div> -->
-            <div class="row s-portfolio__header">
-                <div class="column large-6 medium-8 tab-full">
-                    <div class="section-intro" data-num="03" data-aos="fade-up">
-                        <h3 class="subhead">Portfolio</h3>
-                        <h1 class="display-1">
-                            A selection of recent projects I have worked on.
-                        </h1>
-                    </div>
-                </div>
-            </div> <!-- s-porfolio__header -->
-            <div class="row block-large-1-2 block-900-full work-positions">
-
-                <div class="column" data-aos="fade-up">
-                    <div class="position">
-                        <div class="position__header">
-                            <h6>
-                                <span class="position__co">Riding Application</span>
-                                <!-- <span class="position__pos">Product Designer</span> -->
-                            </h6>
-                            <div class="position__timeframe">
-                                April 2024 - Present
-                            </div>
-                        </div>
-
-                        <p>
-                            Developed feature-rich ride-sharing applications similar to Uber and Ola, focusing on efficient logistics management. Core features include creating shipments, finding drivers within a specified radius, assigning orders, and real-time driver tracking. Secure order pickup and delivery are ensured through PIN verification, enhancing reliability and security. This comprehensive system streamlines transportation, offering seamless order fulfillment and user-friendly experiences for both drivers and customers.
-                        </p>
-                    </div>
-                </div> <!-- end column -->
-               
-            <div class="column" data-aos="fade-up">
-                <div class="position">
-                    <div class="position__header">
-                        <h6>
-                            <span class="position__co">Fintech App</span>
-                        </h6>
-                        <div class="position__timeframe">
-                            December 2023 - October 2024
-                        </div>
-                    </div>
-
-                    <p>
-                        Created a fintech application where customers can create accounts, undergo document verification, and purchase miles as digital currency. Users can convert miles into cash, transfer funds to banks, send miles to friends, and shop for products like in e-commerce platforms. Outstanding miles must be repaid, ensuring a secure and balanced financial ecosystem. This project highlights expertise in fintech development, secure transactions, digital wallets, and seamless financial integration.
-                    </p>
-                </div>
-                
-            </div> 
-
-
-            <div class="column" data-aos="fade-up">
-                <div class="position">
-                    <div class="position__header">
-                        <h6>
-                            <span class="position__co">News App</span>
-                        </h6>
-                        <div class="position__timeframe">
-                            July 2023 - December 2024
-                        </div>
-                    </div>
-
-                    <p>
-                        Created a news application where users can log in via social platforms, read articles, and earn points after reaching a specific reading count. Points can be redeemed for special offers, enhancing user engagement. The app also supports easy news sharing, showcasing expertise in gamification, social integration, and content-based reward systems.
-                    </p>
-                </div>
-                
-            </div> 
-
-
-            <div class="column" data-aos="fade-up">
-                <div class="position">
-                    <div class="position__header">
-                        <h6>
-                            <span class="position__co">Sports App</span>
-                        </h6>
-                        <div class="position__timeframe">
-                            April 2023 - December 2023
-                        </div>
-                    </div>
-                    <p>
-                        Built a sports application offering live updates, match details, and real-time scores for various sports, including cricket, football, and hockey. The app delivers an engaging user experience through intuitive design and seamless data integration, ensuring sports enthusiasts stay connected and informed.
-                    </p>
-                </div>
-                
-            </div> 
-
-         
-
-
-            <div class="column" data-aos="fade-up">
-                <div class="position">
-                    <div class="position__header">
-                        <h6>
-                            <span class="position__co">Business chatting application</span>
-                        </h6>
-                        <div class="position__timeframe">
-                            Febuary 2023 - October 2023
-                        </div>
-                    </div>
-
-                    <p>
-                        Created a real-time business chat application integrated with multiple social media platforms using APIs. This app enables seamless two-way messaging, allowing businesses to send and receive messages from various social channels through a unified interface. It showcases proficiency in real-time communication, API integration, and cross-platform messaging, streamlining customer interaction and enhancing business communication efficiency.
-                    </p>
-                </div>
-                
-        </div> 
-
-        <div class="column" data-aos="fade-up">
-            <div class="position">
-                <div class="position__header">
-                    <h6>
-                        <span class="position__co">E-Commerce</span>
-                    </h6>
-                    <div class="position__timeframe">
-                        December 2022 - October 2023
-                    </div>
-                </div>
-
-                <p>
-                    Built a service-oriented garment industry app where customers can log in, create orders, and select services for garments like shirts and pants. After placing orders, riders pick up garments from customers’ homes, while real-time tracking keeps customers informed about processing status. Once completed, riders deliver garments to specified addresses, ensuring a streamlined and efficient service experience.
-                </p>
+    <section id="works" class="s-works section bg-gray-900">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">My Recent Works</h2>
+                <p class="text-lg text-gray-400 mt-2 max-w-2xl mx-auto">Here are a few of my recent design projects. Want to see more? <a href="#contact" class="text-blue-400 hover:underline">Email me</a>.</p>
             </div>
-            
-        </div> 
 
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-16 masonry">
+                
+                <a href="https://hrgalaxyevents.com/" target="_blank" title="Lamp" class="item-folio group block relative overflow-hidden rounded-lg">
+                    <img src="images/portfolio/hr.png" alt="Lamp" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-all duration-300 flex items-center justify-center">
+                        <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h4 class="font-bold text-lg">Hr Galaxy Events</h4>
+                            <p class="text-sm text-gray-300">Event Management</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://craftkart.org/" target="_blank" title="Woodcraft" class="item-folio group block relative overflow-hidden rounded-lg">
+                    <img src="images/portfolio/craftkart.png" alt="Woodcraft" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-all duration-300 flex items-center justify-center">
+                        <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h4 class="font-bold text-lg">Website</h4>
+                            <p class="text-sm text-gray-300">Ecommerce</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://softhub.in/" target="_blank" title="Shout & Jump" class="item-folio group block relative overflow-hidden rounded-lg">
+                    <img src="images/portfolio/softhub.png" alt="Shout & Jump" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-all duration-300 flex items-center justify-center">
+                        <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h4 class="font-bold text-lg">Company Website</h4>
+                            <p class="text-sm text-gray-300">Business</p>
+                        </div>
+                    </div>
+                </a>
 
+                <a href="https://accedu.co.in/" title="Building Blocks" class="item-folio group block relative overflow-hidden rounded-lg">
+                    <img src="images/portfolio/acc.png" alt="Building Blocks" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-all duration-300 flex items-center justify-center">
+                        <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h4 class="font-bold text-lg">Software</h4>
+                            <p class="text-sm text-gray-300">Educational Website</p>
+                        </div>
+                    </div>
+                </a>
 
-
-        </div> 
-    </section> 
+              
+                
+            </div> <!-- end masonry -->
+        </div>
+    </section> <!-- end s-works -->
 
 
     <!-- testimonials
     ================================================== -->
-    <!--
-    <section id="testimonials" class="s-testimonials">
+    <section class="s-clients section bg-gray-950">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                 <h2 class="text-3xl font-bold text-white">What My Clients Say</h2>
+            </div>
+            
+            <div class="testimonials-wrap mt-16">
+                <div class="testimonials owl-carousel owl-theme">
 
-        <div class="row collapse">
+                    <div class="testimonial-item text-center max-w-2xl mx-auto">
+                        <img src="./images/avatars/ayan.png" alt="Author image" class="w-20 h-20 rounded-full mx-auto mb-6 border-4 border-gray-700">
+                        <p class="text-lg text-gray-300 italic">
+                        Working with Jayanta was the best decision we made for our online presence. They built us a stunning, responsive website that truly reflects our brand. Their team was professional, attentive, and always a step ahead with suggestions. We’ve seen a noticeable increase in customer engagement.
+                        </p>
+                        <div class="testimonial-author mt-4">
+                            <cite class="font-bold text-white not-italic">Ayan Chakraborty</cite>
+                            <span class="text-gray-500">, Founder, ACC</span>
+                        </div>
+                    </div> <!-- end testimonial-item -->
 
-            <div class="column large-full">
+                    <div class="testimonial-item text-center max-w-2xl mx-auto">
+                        <img src="images/avatars/upu.png" alt="Author image" class="w-20 h-20 rounded-full mx-auto mb-6 border-4 border-gray-700">
+                        <p class="text-lg text-gray-300 italic">
+                        Working with him was a game-changer. Our outdated website is now a modern, user-friendly platform, and the SEO and digital marketing strategies he put in place have dramatically boosted our search engine rankings. The support we receive is always reliable and fast.
+                        </p>
+                        <div class="testimonial-author mt-4">
+                            <cite class="font-bold text-white not-italic">Upanada Sahu</cite>
+                            <span class="text-gray-500">, CEO, Craftkart</span>
+                        </div>
+                    </div> <!-- end testimonial-item -->
 
-                <div class="testimonial-slider" data-aos="fade-up">
+                    <div class="testimonial-item text-center max-w-2xl mx-auto">
+                        <img src="images/avatars/harsha.webp" alt="Author image" class="w-20 h-20 rounded-full mx-auto mb-6 border-4 border-gray-700">
+                        <p class="text-lg text-gray-300 italic">
+                        He handled everything for us, from designing a new logo to managing our social media, and the results were fantastic. He gave us a fresh visual identity, and our Instagram and LinkedIn pages are now so much more professional and consistent. His content has been key to connecting with our audience.
+                        </p>
+                        <div class="testimonial-author mt-4">
+                            <cite class="font-bold text-white not-italic">Hansraj Manjhi</cite>
+                            <span class="text-gray-500">, CEO & Business Head</span>
+                        </div>
+                    </div> <!-- end testimonial-item -->
 
-                    <div class="testimonial-slider__slide">
-                        <p>
-                        Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
-                        Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
-                        Laudantium quia consequatur molestias delectus culpa.
+                </div> <!-- end testimonials -->
+            </div> <!-- end testimonials-wrap -->
+        </div>
+    </section> <!-- end s-clients -->
+
+
+    <!-- contact
+    ================================================== -->
+    <section id="contact" class="s-contact section">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">Let's Work Together</h2>
+                <p class="text-lg text-gray-400 mt-2 max-w-2xl mx-auto">I'm currently available for freelance work. Click the button below to send me an email.</p>
+            </div>
+
+            <div class="mt-16 max-w-4xl mx-auto">
+                <!-- Contact Info -->
+                <div class="flex flex-col md:flex-row justify-around gap-12 text-center">
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Where to Find Me</h4>
+                        <p class="text-gray-400 leading-relaxed">
+                        Kolkata, West Bengal<br>
+                        India
                         </p>
-                        <div class="testimonial-slider__author">
-                            <img src="images/avatars/user-02.jpg" alt="Author image" class="testimonial-slider__avatar">
-                            <cite class="testimonial-slider__cite">
-                                <strong>Tim Cook</strong>
-                                <span>CEO, Apple</span>
-                            </cite>
-                        </div>
-                    </div> 
-    
-                    <div class="testimonial-slider__slide">
-                        <p>
-                        Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
-                        Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
-                        Quasi voluptas eius distinctio. Atque eos maxime.
-                        </p>
-                        <div class="testimonial-slider__author">
-                            <img src="images/avatars/user-01.jpg" alt="Author image" class="testimonial-slider__avatar">
-                            <cite class="testimonial-slider__cite">
-                                <strong>Sundar Pichai</strong>
-                                <span>CEO, Google</span>
-                            </cite>
-                        </div>
-                    </div> 
-    
-                    <div class="testimonial-slider__slide">
-                        <p>
-                        Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.  
-                        Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
-                        Voluptatem dignissimos ut.
-                        </p>
-                        <div class="testimonial-slider__author">
-                            <img src="images/avatars/user-04.jpg" alt="Author image" class="testimonial-slider__avatar">
-                            <cite class="testimonial-slider__cite">
-                                <strong>Satya Nadella</strong>
-                                <span>CEO, Microsoft</span>
-                            </cite>
-                        </div>
-                    </div> 
-    
-                    <div class="testimonial-slider__slide">
-                        <p>
-                        Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis 
-                        quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit. 
-                        Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                        </p>
-                        <div class="testimonial-slider__author">
-                            <img src="images/avatars/user-05.jpg" alt="Author image" class="testimonial-slider__avatar">
-                            <cite class="testimonial-slider__cite">
-                                <strong>Jeff Bezos</strong>
-                                <span>CEO, Amazon</span>
-                            </cite>
-                        </div>
                     </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Email Me At</h4>
+                        <p class="text-gray-400">
+                            <a href="mailto:paul17jayanta@gmail.com" class="hover:text-blue-400 transition-colors">paul17jayanta@gmail.com</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Call Me At</h4>
+                        <a class="text-gray-400" href="tel:+918621029485">
+                            Phone: (+91) 8621029485
+                        </a>
+                    </div>
+                </div>
 
-                </div> 
-                
-            </div>
-        </div> end row -->
-
-
-        <!-- CTA
-        ================================================== -->
-        <!-- <div class="s-cta">
-
-            <div class="row">
-                <div class="column large-full">
-                    <h2 class="section-desc" data-aos="fade-up">
-                        Need a great reliable web hosting?
-                    </h2>
+                <!-- Mailto Button -->
+                <div class="mt-16 text-center">
+                     <a href="mailto:paul17jayanta@gmail.com?subject=Project%20Inquiry%20from%20your%20Portfolio" class="btn bg-blue-600 text-white py-4 px-10 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold uppercase tracking-wider text-lg">
+                        <i class="fas fa-paper-plane mr-2"></i> Send me an Email
+                    </a>
                 </div>
             </div>
-    
-            <div class="row cta-content" data-aos="fade-up">
-                <div class="column large-full">
-                    <p>
-                    We highly recommend <a href="https://www.dreamhost.com/r.cgi?287326">DreamHost</a>.
-                    Powerful web and Wordpress hosting. Guaranteed.
-                    Starting at $2.95 per month.
-                    </p>
-    
-                    <a href="https://www.dreamhost.com/r.cgi?287326" class="btn btn--primary h-full-width">Get Started</a>
-                </div>
-            </div> 
-             -->
-            <!-- end cta-content -->
-    
-        </div> <!-- end s-cta -->
-
-
-    </section>  
+        </div>
+    </section> <!-- end s-contact -->
 
 
     <!-- footer
     ================================================== -->
-    <footer class="s-footer h-dark-bg">
-        
-        <div class="right-vert-line"></div>
-
-        <div class="row s-footer__main">
-            <div class="column large-6">
-                <div class="section-intro" data-aos="fade-up">
-                    <h3 class="subhead">Get In Touch</h3>
-                    <h1 class="display-1">
-                        Reach out today to transform your ideas into innovative, impactful solutions tailored to your needs!
-                    </h1>
-                </div>
-
-                <div class="footer-email-us">
-                    <a href="mailto:paul17jayanta@icloud.com" class="btn btn--primary h-full-width">Let's Talk</a>
-                </div>
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-6 lg:px-8 text-center">
+            <div class="footer-social flex justify-center space-x-6 mb-6">
+                <a href="https://www.facebook.com/jayanta.paul.121772/" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/jayanta-paul-606256220/" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="https://github.com/pauljayanta17" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-github fa-lg"></i></a>
             </div>
 
-            <div class="column large-5">
-                <div class="footer-contacts">
-                    <div class="footer-contact-block" data-aos="fade-up">
-                        <h5 class="footer-contact-block__header">
-                            Email
-                        </h5>
-                        <p class="footer-contact-block__content">
-                            <a href="mailto:paul17jayanta@icloud.com">paul17jayanta@icloud.com</a>
-                        </p>
-                    </div> <!-- end footer-contact-block -->
-                    <div class="footer-contact-block" data-aos="fade-up">
-                        <h5 class="footer-contact-block__header">
-                            Phone
-                        </h5>
-                        <p class="footer-contact-block__content">
-                            <a href="tel:+918621029485">+91 86210 29485</a>
-                        </p>
-                    </div> <!-- end footer-contact-block -->
-                    <br>
-                    <div class="footer-contact-block" data-aos="fade-up">
-                        <h5 class="footer-contact-block__header">
-                            Social
-                        </h5>
-                        <ul class="footer-contact-block__list">
-                            <li><a href="https://x.com/dev_jayanta_dev" target="_blank">Twitter</a></li>
-                            <li><a href="https://www.instagram.com/jayanta1710/" target="_blank">Instagram</a></li>
-                            <li><a href="https://www.linkedin.com/in/jayanta-paul-606256220/" target="_blank">Linkedin</a></li>
-                            <!-- <li><a href="">Dribbble</a></li> -->
-                        </ul>
-                    </div> <!-- end footer-contact-block -->
-                </div>
+            <div class="copyright text-gray-500">
+                <span>© Copyright Jayanta Paul 2025.</span> 
+                <span>Design inspired by <a href="https://www.softhub.in/" class="hover:text-white">Softhub</a></span>
             </div>
-        </div> <!-- end s-footer__main -->
 
-        <div class="row s-footer__bottom">
-            <div class="column large-full ss-copyright">
-                <span>© Copyright Jayanta 2024</span> 
-                <span>Design by <a href="https://www.styleshout.com/">Jayanta</a></span>
-            </div> <!-- end ss-copyright -->
-
-            <div class="ss-go-top">
+            <div class="go-top mt-8">
                 <a class="smoothscroll" title="Back to Top" href="#top">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
+                    <i class="fas fa-arrow-up bg-gray-700 text-white p-3 rounded-full hover:bg-blue-500 transition-colors"></i>
                 </a>
-            </div> <!-- end ss-go-top -->
-        </div> <!-- end s-footer__bottom -->
-
+            </div>
+        </div>
     </footer> <!-- end s-footer -->
 
 
@@ -682,9 +450,7 @@
 
             <div class="pswp__ui pswp__ui--hidden">
                 <div class="pswp__top-bar">
-                    <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title=
-                    "Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title=
-                    "Zoom in/out"></button>
+                    <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title="Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
                     <div class="pswp__preloader">
                         <div class="pswp__preloader__icn">
                             <div class="pswp__preloader__cut">
@@ -695,8 +461,7 @@
                 </div>
                 <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                     <div class="pswp__share-tooltip"></div>
-                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title=
-                "Next (arrow right)"></button>
+                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
                 <div class="pswp__caption">
                     <div class="pswp__caption__center"></div>
                 </div>
@@ -704,7 +469,7 @@
 
         </div>
 
-    </div> <!-- end photoSwipe background -->
+    </div><!-- end photoSwipe background -->
 
 
     <!-- Java Script
@@ -714,3 +479,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
+</html>
